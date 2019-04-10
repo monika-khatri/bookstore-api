@@ -29,3 +29,5 @@
 # dotenv config
 /.env
 /.env.development
+
+/.idea
