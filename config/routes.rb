@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :publishing_houses
-  resources :authors
+  resources :authors do
+    post 'callback', on: :collection
+  end
   resources :books
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
