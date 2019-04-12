@@ -38,6 +38,17 @@ class AuthorsController < ApplicationController
     @author.destroy
   end
 
+  # POST /authors/callback
+  def callback
+    # params[:action] value is overridden by rails as controller action value.
+    # So we have to take GitHub callback response action from raw_post
+    data = JSON.parse(request.raw_post)
+    response = Github::IssueWebHookService.process(data["action"], params[:issue])
+    unless response
+      render json: {}, status: :unprocessable_entity
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_author
