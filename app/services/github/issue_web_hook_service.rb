@@ -19,7 +19,7 @@ module Github
         else
           puts "#{action} is not supported yet."
         end
-      rescue Exception => e
+      rescue => e
         puts "Exception raised during processing web hook payload: #{e.inspect}"
       end
     end
